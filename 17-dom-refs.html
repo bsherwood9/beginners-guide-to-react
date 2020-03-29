@@ -43,32 +43,34 @@
     }
   </style>
   <script type="text/babel">
-    function Tilt({children}) {
-      const tiltRef = React.useRef()
+    function Tilt({ children }) {
+      const tiltRef = React.useRef();
 
       React.useEffect(() => {
-        const tiltNode = tiltRef.current
+        const tiltNode = tiltRef.current;
         const vanillaTiltOptions = {
           max: 25,
           speed: 400,
           glare: true,
-          'max-glare': 0.5,
-        }
-        VanillaTilt.init(tiltNode, vanillaTiltOptions)
+          "max-glare": 0.5
+        };
+        VanillaTilt.init(tiltNode, vanillaTiltOptions);
+
+        //garbage disposal
         return () => {
-          tiltNode.vanillaTilt.destroy()
-        }
-      }, [])
+          tiltNode.vanillaTilt.destroy();
+        };
+      }, []);
 
       return (
         <div ref={tiltRef} className="tilt-root">
           <div className="tilt-child">{children}</div>
         </div>
-      )
+      );
     }
 
     function App() {
-      const [showTilt, setShowTilt] = React.useState(true)
+      const [showTilt, setShowTilt] = React.useState(true);
       return (
         <div>
           <label>
@@ -76,7 +78,7 @@
               type="checkbox"
               checked={showTilt}
               onChange={e => setShowTilt(e.target.checked)}
-            />{' '}
+            />{" "}
             show tilt
           </label>
           {showTilt ? (
@@ -85,9 +87,9 @@
             </Tilt>
           ) : null}
         </div>
-      )
+      );
     }
 
-    ReactDOM.render(<App />, document.getElementById('root'))
+    ReactDOM.render(<App />, document.getElementById("root"));
   </script>
 </body>
